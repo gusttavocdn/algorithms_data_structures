@@ -14,24 +14,22 @@ export default class Queue<T> {
 	public tail: QNode<T> | null;
 
 	constructor() {
-		this.head = null;
-		this.tail = null;
+		this.head = this.tail = null;
 		this.length = 0;
 	}
 
 	enqueue(item: T): void {
 		const newNode = new QNode(item);
 
+		this.length++;
 		if (!this.head) {
 			this.head = newNode;
 			this.tail = newNode;
-			this.length++;
 			return;
 		}
 
 		this.tail!.next = newNode;
 		this.tail = newNode;
-		this.length++;
 	}
 
 	deque(): T | undefined {
@@ -47,7 +45,6 @@ export default class Queue<T> {
 	}
 
 	peek(): T | undefined {
-		if (!this.head) return undefined;
-		return this.head.data;
+		return this.head?.data;
 	}
 }
