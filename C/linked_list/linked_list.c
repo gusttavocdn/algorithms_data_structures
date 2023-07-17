@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:59:19 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/16 21:07:31 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/16 21:26:38 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_lst_insert_at(t_list *list, size_t index, void *data)
 	list->size++;
 }
 
-void	*ft_lst_remove_node(t_list *list, char *data)
+t_bool	*ft_lst_remove_node(t_list *list, void *data)
 {
 	t_node	*current_node;
 	t_node	*prev_node;
@@ -92,7 +92,7 @@ void	*ft_lst_remove_node(t_list *list, char *data)
 	if (memcmp(list->head->data, data, strlen(data)) == 0)
 	{
 		list->head = list->head->next;
-		return (data);
+		return (TRUE);
 	}
 	current_node = list->head->next;
 	prev_node = list->head;
@@ -102,10 +102,10 @@ void	*ft_lst_remove_node(t_list *list, char *data)
 		{
 			prev_node->next = current_node->next;
 			ft_lst_del_node(current_node, free);
-			return (data);
+			return (TRUE);
 		}
 		prev_node = current_node;
 		current_node = current_node->next;
 	}
-	return (NULL);
+	return (FALSE);
 }
