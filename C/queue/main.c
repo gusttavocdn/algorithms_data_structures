@@ -5,38 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 16:00:30 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/17 11:08:47 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/07/17 11:08:50 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/07/17 12:08:10 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
-#include <stdint.h>
+#include "queue.h"
 #include <stdio.h>
+
+void	test(void *s)
+{
+	printf("Deleting => %s\n", (char *)s);
+	return ;
+}
 
 int	main(int argc, char const *argv[])
 {
-	t_list	list;
-	t_node	*node;
-	size_t	counter;
+	t_queue	queue;
+	t_qnode	*node;
 
-	// void	*data;
-	(void)argc;
+	// t_qnode	*removed_node;
 	(void)argv;
-	ft_lst_init(&list);
-	ft_lst_append(&list, strdup("Marcos"));
-	ft_lst_append(&list, strdup("Marcos"));
-	ft_lst_append(&list, strdup("Gustavo"));
-	ft_lst_remove_node(&list, "Gustavo");
-	counter = 0;
-	node = list.head;
-	while (counter < list.size)
+	(void)argc;
+	ft_queue_init(&queue);
+	ft_queue_enqueue(&queue, "Gustavo");
+	ft_queue_enqueue(&queue, "Larissa");
+	ft_queue_enqueue(&queue, "Nicolly");
+	ft_queue_enqueue(&queue, "Marcos");
+	ft_queue_enqueue(&queue, "Luciene");
+	// ft_queue_dequeue(&queue);
+	node = queue.head;
+	for (int i = 0; i < queue.size; i++)
 	{
-		printf("%s\n", (char *)node->data);
+		printf("Value => %s\n", (char *)node->data);
 		node = node->next;
-		counter++;
 	}
-	ft_lst_clear(&list, free);
-	printf("%lu", list.size);
-	return (EXIT_SUCCESS);
+	printf("Queue Size => %d\n", queue.size);
+	ft_queue_clear(&queue, test);
+	return (0);
 }
