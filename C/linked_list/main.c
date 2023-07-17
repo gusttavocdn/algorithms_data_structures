@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 16:00:30 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/16 17:45:59 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/16 20:59:02 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,23 @@ int	main(int argc, char const *argv[])
 	t_node	*node;
 	size_t	counter;
 
+	// void	*data;
 	(void)argc;
 	(void)argv;
 	ft_lst_init(&list);
-	ft_lst_append(&list, (void *)1);
-	ft_lst_append(&list, (void *)2);
-	ft_lst_append(&list, (void *)3);
-	ft_lst_append(&list, (void *)4);
-	ft_lst_append(&list, (void *)5);
-	ft_lst_append(&list, (void *)6);
-	ft_lst_append(&list, (void *)7);
-	ft_lst_append(&list, (void *)8);
-	ft_lst_append(&list, (void *)9);
-	ft_lst_append(&list, (void *)-100);
-	// ft_lst_prepend(&list, "Nicolly");
-	// ft_lst_insert_at(&list, 2, "Marcos");
-	// ft_lst_insert_at(&list, 19, "Luciene");
+	ft_lst_append(&list, strdup("Marcos"));
+	ft_lst_append(&list, strdup("Marcos"));
+	ft_lst_append(&list, strdup("Gustavo"));
+	ft_lst_remove_node(&list, "Gustavo");
 	counter = 0;
 	node = list.head;
 	while (counter < list.size)
 	{
-		printf("%ld\n", (uint64_t)node->data);
+		printf("%s\n", (char *)node->data);
 		node = node->next;
 		counter++;
 	}
+	ft_lst_clear(&list, free);
 	printf("%lu", list.size);
 	return (EXIT_SUCCESS);
 }
