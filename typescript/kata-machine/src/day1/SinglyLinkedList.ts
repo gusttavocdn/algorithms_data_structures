@@ -42,6 +42,7 @@ export default class SinglyLinkedList<T> {
 		newNode.next = currentNode;
 		this.length += 1;
 	}
+
 	append(item: T): void {
 		if (this.head === null) {
 			this.head = new Node(item);
